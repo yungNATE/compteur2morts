@@ -6,28 +6,46 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
+
 
 public class Reset implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		Incrementeur2mort.nbMorts=0;
-		Incrementeur2mort.updateMorts();
+		Object[] choices = {"Oui, je suis tristement mauvais", "Non, je suis un giga boss qui assume"};
+		Object defaultChoice = choices[1];
 		
-File fic = new File(Incrementeur2mort.lienFichierSauvegarde);
+		int dialogResult = JOptionPane.showInternalOptionDialog (	Incrementeur2mort.contentPane, 
+																	"Tu es sûr de vouloir remettre à 0 ton compteur ? Bien... Tu as honte de ce score NUL ? ",
+																	"ATTENTION",
+																	JOptionPane.YES_NO_OPTION,
+																	JOptionPane.WARNING_MESSAGE,
+													                null,
+													                choices,
+													                defaultChoice
+																	);
 		
-    	if(!fic.exists()) try {fic.createNewFile();} 
-    						catch (IOException e) {e.printStackTrace();}
+		if(dialogResult == JOptionPane.YES_OPTION){
+			Incrementeur2mort.nbMorts=0;
+			Incrementeur2mort.updateMorts();
+			
+			File fic = new File(Incrementeur2mort.lienFichierSauvegarde);
+			
+	    	if(!fic.exists()) try {fic.createNewFile();} 
+	    						catch (IOException e) {e.printStackTrace();}
+			
+	    	try {
+	    	      FileWriter myWriter = new FileWriter(fic);
+	    	      myWriter.write(""+Incrementeur2mort.nbMorts);
+	    	      myWriter.close();
+	    	      System.out.println("Successfully wrote to the file.");
+	    	    } catch (IOException e) {
+	    	      System.out.println("An error occurred.");
+	    	      e.printStackTrace();
+	    	    }
+		}
 		
-    	try {
-    	      FileWriter myWriter = new FileWriter(fic);
-    	      myWriter.write(""+Incrementeur2mort.nbMorts);
-    	      myWriter.close();
-    	      System.out.println("Successfully wrote to the file.");
-    	    } catch (IOException e) {
-    	      System.out.println("An error occurred.");
-    	      e.printStackTrace();
-    	    }
 
 	}
 

@@ -2,6 +2,7 @@ package incrementeur2morts;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.io.File;
@@ -32,8 +33,10 @@ public class Incrementeur2mort extends JFrame {
 	JLabel titre;
 	static JLabel morts; JTextField inputLienFichierSauvegarde;
 	JButton incrementeurMorts, decrementeurMorts, resetMorts;
-	Color couleurPoliceDecr = new Color(170,18,18), couleurPoliceIncr = new Color(0,153,0);
+	Color 	couleurPoliceDecr = new Color(170,18,18), couleurPoliceIncr = new Color(0,153,0),
+			GRIS_CLAIR = new Color(237,238,247);
 	
+	static Container contentPane;
     public Incrementeur2mort() {
     	
 	   setTitle("incrémenteur2morts");
@@ -42,12 +45,15 @@ public class Incrementeur2mort extends JFrame {
 	   
 	   
 	   // panel total
+	   contentPane = getContentPane();
 	   getContentPane().setLayout(new BorderLayout(0, 0));   
+	   getContentPane().setBackground(GRIS_CLAIR);
 	   
 	   
 	   // panel0 : titre 
 	   JPanel panel0 = new JPanel();   
 	   getContentPane().add(panel0, BorderLayout.NORTH);
+	   panel0.setOpaque(false);
 	   // titre
 	   titre = new JLabel("Je suis votre assistant de morts. Comment puis-je vous aider ?");
 	   titre.setFont(new Font(police, Font.HANGING_BASELINE, 14));
@@ -57,6 +63,7 @@ public class Incrementeur2mort extends JFrame {
 	   // panel1 : btn decr morts + btn resert morts
 	   JPanel panel1 = new JPanel();   
 	   getContentPane().add(panel1, BorderLayout.SOUTH);
+	   panel1.setOpaque(false);
 	   // btn decr morts
 	   decrementeurMorts = new JButton(TEXTE_BOUTON_DECR);
 	   decrementeurMorts.setFont(new Font(police, Font.PLAIN, 12));
@@ -74,6 +81,7 @@ public class Incrementeur2mort extends JFrame {
 	   // panel2 : btn incr morts + nb morts
 	   JPanel panel2 = new JPanel();   
 	   getContentPane().add(panel2, BorderLayout.CENTER);
+	   panel2.setOpaque(false);
 	   // btn incr morts
 	   incrementeurMorts = new JButton(TEXTE_BOUTON_INCR);
 	   incrementeurMorts.setPreferredSize(new Dimension((int)decrementeurMorts.getPreferredSize().getWidth(),200));
@@ -87,7 +95,7 @@ public class Incrementeur2mort extends JFrame {
 	   
 	   nbMorts=lireValSauvegardee(); updateMorts();
 	   setSize(new Dimension(800,400)); setResizable(false);
-	   this.setVisible(true);
+	   setVisible(true);
 	   
     }
     
@@ -118,7 +126,7 @@ public class Incrementeur2mort extends JFrame {
     
     
     public static void main(String[] args) {
-    	new Incrementeur2mort();
+    	final Incrementeur2mort I2M = new Incrementeur2mort();
     }
 
 }
