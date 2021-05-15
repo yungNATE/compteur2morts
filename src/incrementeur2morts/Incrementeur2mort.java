@@ -23,9 +23,9 @@ public class Incrementeur2mort extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	String 	TEXTE_BOUTON_INCR="Je souhaite incrémenter mon nombre de morts, je suis mauvais", 
-			TEXTE_BOUTON_DECR="Je souhaite décrémenter mon nombre de morts, car j'ai du mal à cliquer sur ma souris de gaming RGB",
-			TEXTE_BOUTON_RST="Remettre le compteur à 0"; 
+	String 	TEXTE_BOUTON_INCR="Je souhaite incrémenter les morts", 
+			TEXTE_BOUTON_DECR="Je souhaite décrémenter les morts",
+			TEXTE_BOUTON_RST="Remettre à 0"; 
 	
 	static String lienFichierSauvegarde="nbMorts.ser", police="Arial";
 	static int nbMorts;
@@ -84,7 +84,6 @@ public class Incrementeur2mort extends JFrame {
 	   panel2.setOpaque(false);
 	   // btn incr morts
 	   incrementeurMorts = new JButton(TEXTE_BOUTON_INCR);
-	   incrementeurMorts.setPreferredSize(new Dimension((int)decrementeurMorts.getPreferredSize().getWidth(),200));
 	   incrementeurMorts.setFont(new Font(police, Font. BOLD, 18));
 	   incrementeurMorts.setForeground(couleurPoliceIncr);
 	   incrementeurMorts.addActionListener(new Incrementation());
@@ -94,9 +93,9 @@ public class Incrementeur2mort extends JFrame {
 	   panel2.add(morts);
 	   
 	   nbMorts=lireValSauvegardee(); updateMorts();
-	   setSize(new Dimension(800,400)); setResizable(false);
+	   setSize(new Dimension(450,175)); setResizable(false);
 	   setVisible(true);
-	   
+
     }
     
     private static int lireValSauvegardee() {

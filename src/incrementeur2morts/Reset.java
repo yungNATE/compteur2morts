@@ -13,11 +13,11 @@ public class Reset implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		Object[] choices = {"Oui, je suis tristement mauvais", "Non, je suis un giga boss qui assume"};
+		Object[] choices = {"Oui, je suis mauvais", "Non, je suis un giga boss"};
 		Object defaultChoice = choices[1];
 		
 		int dialogResult = JOptionPane.showInternalOptionDialog (	Incrementeur2mort.contentPane, 
-																	"Tu es sûr de vouloir remettre à 0 ton compteur ? Bien... Tu as honte de ce score NUL ? ",
+																	"Tu es sûr de vouloir remettre à 0 ton compteur ?",
 																	"ATTENTION",
 																	JOptionPane.YES_NO_OPTION,
 																	JOptionPane.WARNING_MESSAGE,
