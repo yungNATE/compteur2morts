@@ -11,6 +11,10 @@ public class Incrementation implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		action();
+	}
+	
+	static void action() {
 		Incrementeur2mort.nbMorts+=1;
 		Incrementeur2mort.updateMorts();
 		
@@ -28,7 +32,6 @@ public class Incrementation implements ActionListener {
     	      System.out.println("An error occurred.");
     	      e.printStackTrace();
     	    }
-
 	}
 
 }

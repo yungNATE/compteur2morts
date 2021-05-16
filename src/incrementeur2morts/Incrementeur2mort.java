@@ -15,8 +15,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import java.util.Scanner;
+import org.jnativehook.*;
+import org.jnativehook.dispatcher.SwingDispatchService;
+import org.jnativehook.keyboard.NativeKeyEvent;
+import org.jnativehook.keyboard.NativeKeyListener;
 
-public class Incrementeur2mort extends JFrame {
+public class Incrementeur2mort extends JFrame implements NativeKeyListener{
 	
 	/**
 	 * 
@@ -94,6 +98,9 @@ public class Incrementeur2mort extends JFrame {
 	   
 	   nbMorts=lireValSauvegardee(); updateMorts();
 	   setSize(new Dimension(450,175)); setResizable(false);
+	   
+	   GlobalScreen.setEventDispatcher(new SwingDispatchService());
+	   
 	   setVisible(true);
 
     }
@@ -114,7 +121,7 @@ public class Incrementeur2mort extends JFrame {
     	      myReader.close();
     	    } catch (FileNotFoundException e) {
     	      System.out.println("An error occurred.");
-    	      e.printStackTrace();
+    	      //zzzzzezeze.printStackTrace();
     	    }
     	
 		return valeurLue;
@@ -126,6 +133,41 @@ public class Incrementeur2mort extends JFrame {
     
     public static void main(String[] args) {
     	final Incrementeur2mort I2M = new Incrementeur2mort();
+    	try {GlobalScreen.registerNativeHook();} 
+    		catch (NativeHookException e) {e.printStackTrace();}
+    	GlobalScreen.addNativeKeyListener(I2M);
     }
+
+	@Override //88888888888
+	public void nativeKeyPressed(NativeKeyEvent key) {
+		String actualKey = NativeKeyEvent.getKeyText(key.getKeyCode());
+		System.out.println(actualKey);
+		switch (actualKey){
+			case "8": 
+				Incrementation.action();
+				break;
+			case "7":
+				Decrementation.action();
+				break;
+			case "0":
+				Reset.action();
+				break;
+			default:
+				// NULL
+		}
+		
+	}
+
+	@Override
+	public void nativeKeyReleased(NativeKeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void nativeKeyTyped(NativeKeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

@@ -12,7 +12,11 @@ import javax.swing.JOptionPane;
 public class Reset implements ActionListener {
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent arg0) {		
+		action();
+	}
+	
+	static void action(){
 		Object[] choices = {"Oui, je suis mauvais", "Non, je suis un giga boss"};
 		Object defaultChoice = choices[1];
 		
@@ -45,8 +49,5 @@ public class Reset implements ActionListener {
 	    	      e.printStackTrace();
 	    	    }
 		}
-		
-
 	}
-
 }
